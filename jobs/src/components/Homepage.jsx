@@ -10,10 +10,9 @@ class Homepage extends Component {
 
   componentDidMount = async () => {
     try {
-      let resp = await fetch("https://remotive.io/api/remote-jobs");
+      let resp = await fetch("https://strive-jobs-api.herokuapp.com/jobs");
       if (resp.ok) {
-        let data = await resp.json();
-        let jobs = await data.jobs;
+        let jobs = await resp.json()
         this.setState({ ...this.state, jobs: jobs });
         console.log(this.state);
       } else {
