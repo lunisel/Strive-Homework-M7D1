@@ -8,7 +8,7 @@ const SingleJob = ({ book, changeBook, bookSelected }) => (
       style={{ cursor: "pointer" }}
     >
       <Card.Body className="d-flex">
-        <img className="book-image" src=""/* {book.imageUrl} */ alt="book cover" />
+        <img className="book-image" src="http://placehold.it/200x200" alt="book cover" />
         <div>
           <Card.Text className="font-weight-bold">JOB TITLE</Card.Text>
           <p>Description</p>

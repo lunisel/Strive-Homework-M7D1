@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import JobList from "./JobList";
 
 class Homepage extends Component {
   state = {
@@ -14,7 +15,7 @@ class Homepage extends Component {
         let data = await resp.json();
         let jobs = await data.jobs;
         this.setState({ ...this.state, jobs: jobs });
-        console.log(this.state)
+        console.log(this.state);
       } else {
         console.log("error");
       }
@@ -26,7 +27,22 @@ class Homepage extends Component {
   changeJob = (job) => this.setState({ jobSelected: job });
 
   render() {
-    return <Row></Row>;
+    return (
+      <div className="home-cont">
+        <div className="search-cont">
+          <Form.Control
+            type="text"
+            placeholder="Search..."
+            className="search-bar"
+          ></Form.Control>
+        </div>
+        <JobList
+          jobs={this.state.jobs}
+          jobSelected={this.state.jobSelected}
+          changeJob={this.changeJob}
+        />
+      </div>
+    );
   }
 }
 
