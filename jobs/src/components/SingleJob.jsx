@@ -1,20 +1,29 @@
 import { Card } from "react-bootstrap";
 
-const SingleJob = ({ book, changeBook, bookSelected }) => (
+const SingleJob = ({ job, changeJob, jobSelected }) => {
+  return (
     <Card
-      /* className={bookSelected?.id === book.id ? "border-thick mt-3" : "mt-3"} */
-      
-      /* onClick={() => changeBook(book)} */
+      className={
+        jobSelected?._id === job._id ? "card-main active" : "card-main"
+      }
+      onClick={() => changeJob(job)}
       style={{ cursor: "pointer" }}
     >
+      <div className="cart-img-cont">
+        <img
+          className="job-image img-fluid"
+          src="http://placehold.it/200x200"
+          alt="job cover"
+        />
+      </div>
       <Card.Body className="d-flex">
-        <img className="book-image" src="http://placehold.it/200x200" alt="book cover" />
         <div>
-          <Card.Text className="font-weight-bold">JOB TITLE</Card.Text>
-          <p>Description</p>
+          <Card.Text className="font-weight-bold">{job.title}</Card.Text>
+          <p>{job.company_name}</p>
         </div>
       </Card.Body>
     </Card>
   );
-  
-  export default SingleJob;
+};
+
+export default SingleJob;

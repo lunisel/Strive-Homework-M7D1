@@ -65,8 +65,26 @@ a:hover{
   height: 2rem;
 }
 
-div.card{
+div.card.card-main{
   width: 100%;
   height: 100%;
-  
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgba(0, 0, 0, 0.219);
+}
+
+div.card.card-main.active{
+  border: solid 1px black;
+}
+
+.cart-img-cont{
+  width: 90%;
+  height: fit-content;
+  margin: auto;
+}
+
+.cart-img-cont img{
+  width: 100%;
+  object-fit: cover;
+  padding-top: 0.5rem;
 }
