@@ -2,6 +2,7 @@ import "./App.css";
 import Homepage from "./components/Homepage";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import {Container} from "react-bootstrap"
+import Search from "./components/Search";
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Link className="category-link" to="/category/medicalHealth">Medical / Health</Link>
           </div>
         </div>
-        <Route path="/" exact render={() => <Homepage />} />
+        <Route path="/" exact render={(routerProps) => <Homepage {...routerProps}/>} />
+        <Route path="/search" exact render={(routerProps) => <Search {...routerProps}/>} />
       </BrowserRouter>
     </div>
   );

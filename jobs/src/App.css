@@ -88,3 +88,23 @@ div.card.card-main.active{
   object-fit: cover;
   padding-top: 0.5rem;
 }
+
+.prev-next-cont{
+  display: flex;
+  justify-content: center;
+}
+
+.prev-next-cont .prev,.next{
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px rgba(0, 0, 0, 0.384);
+  border-radius: 5px;
+}
+
+.prev-next-cont .prev:hover,.next:hover{
+  background-color: rgba(0, 0, 0, 0.144);
+  cursor: pointer;
+}

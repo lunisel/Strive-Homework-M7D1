@@ -1,18 +1,19 @@
 import { Component } from "react";
 import { Form } from "react-bootstrap";
 import JobList from "./JobList";
-import {BsArrowLeft, BsArrowRight} from "react-icons/bs"
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-class Homepage extends Component {
+class Search extends Component {
   state = {
     jobs: [],
     jobSelected: null,
+    query: "",
   };
 
   getJobs = async (query) => {
     try {
       let resp = await fetch(
-        "https://strive-jobs-api.herokuapp.com/jobs?" + query
+        "https://strive-jobs-api.herokuapp.com/jobs?search=" + query
       );
       if (resp.ok) {
         let data = await resp.json();
@@ -27,10 +28,6 @@ class Homepage extends Component {
     }
   };
 
-  componentDidMount = async () => {
-    await this.getJobs("limit=18");
-  };
-
   changeJob = (job) => this.setState({ jobSelected: job });
 
   render() {
@@ -41,7 +38,13 @@ class Homepage extends Component {
             type="text"
             placeholder="Search..."
             className="search-bar"
-            onClick={()=> this.props.history.push("/search")}
+            onChange={(e) => {
+              this.setState({
+                ...this.state,
+                query: e.currentTarget.value,
+              });
+              this.getJobs(this.state.query);
+            }}
           ></Form.Control>
         </div>
         <JobList
@@ -50,12 +53,22 @@ class Homepage extends Component {
           changeJob={this.changeJob}
         />
         <div className="prev-next-cont my-2">
-          <div className="prev mr-2" onClick={()=> this.getJobs(`limit=18&skip=0`)}><BsArrowLeft style={{fontSize: '2rem'}}/></div>
-          <div className="next ml-2" onClick={()=> this.getJobs("limit=18&skip=18")}><BsArrowRight style={{fontSize: '2rem'}}/></div>
+          <div
+            className="prev mr-2"
+            onClick={() => this.getJobs(`limit=18&skip=0`)}
+          >
+            <BsArrowLeft style={{ fontSize: "2rem" }} />
+          </div>
+          <div
+            className="next ml-2"
+            onClick={() => this.getJobs("limit=18&skip=18")}
+          >
+            <BsArrowRight style={{ fontSize: "2rem" }} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Homepage;
+export default Search;
